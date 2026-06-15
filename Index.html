@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anushka Saini — Data Analyst</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple: #5B4FCF;
+    --purple-light: #EAE8FB;
+    --purple-mid: #9B93E8;
+    --ink: #18172B;
+    --ink-2: #3D3B55;
+    --ink-3: #7A788F;
+    --ink-4: #B4B2C8;
+    --surface: #F6F5FF;
+    --white: #FFFFFF;
+    --border: rgba(91,79,207,0.12);
+    --teal: #0F9E80;
+    --teal-bg: #E3F5F0;
+    --coral: #D95F38;
+    --coral-bg: #FAEDE7;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(246,245,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 2.5rem; height: 58px;
+  }
+  .nav-logo {
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    letter-spacing: 0.02em; display: flex; align-items: center; gap: 8px;
+  }
+  .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); display: inline-block; }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--ink-3); text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--purple); }
+
+  /* HERO */
+  .hero {
+    max-width: 900px; margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--purple); text-transform: uppercase; margin-bottom: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--purple); }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--ink); letter-spacing: -0.02em; margin-bottom: 1.25rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--purple); }
+  .hero-bio { font-size: 15px; color: var(--ink-2); line-height: 1.75; max-width: 480px; margin-bottom: 2rem; }
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
+  .chip {
+    font-size: 12px; padding: 4px 12px; border-radius: 20px;
+    border: 1px solid var(--border); color: var(--ink-2);
+    background: var(--white); display: flex; align-items: center; gap: 5px;
+    text-decoration: none; transition: border-color 0.15s, color 0.15s;
+  }
+  .chip:hover { border-color: var(--purple); color: var(--purple); }
+  .chip svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .hero-avatar {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: var(--purple-light); display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 400; color: var(--purple); letter-spacing: -1px;
+    border: 2px solid var(--border); flex-shrink: 0; margin-top: 1rem;
+  }
+
+  /* STAT BAR */
+  .stat-bar {
+    background: var(--purple); margin: 0 auto;
+    display: flex; justify-content: center; gap: 0;
+  }
+  .stat {
+    padding: 1.5rem 3rem; text-align: center; flex: 1; max-width: 200px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 26px; font-weight: 500; color: #fff; line-height: 1; }
+  .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 5px; font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; }
+
+  /* SECTIONS */
+  .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 2.5rem; }
+  .section-tag {
+    font-family: 'Times New Roman', Times, serif; font-size: 11px; letter-spacing: 0.1em;
+    color: var(--purple); text-transform: uppercase;
+    background: var(--purple-light); padding: 3px 10px; border-radius: 4px;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* EXPERIENCE */
+  .exp-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.75rem; position: relative;
+    overflow: hidden;
+  }
+  .exp-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--purple);
+  }
+  .exp-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .exp-role { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .exp-company {
+    font-family: 'Times New Roman', Times, serif; font-size: 12px;
+    color: var(--purple); letter-spacing: 0.03em;
+  }
+  .exp-period { font-size: 12px; color: var(--ink-3); white-space: nowrap; font-family: 'Times New Roman', Times, serif; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .exp-bullets li { font-size: 14px; color: var(--ink-2); line-height: 1.65; padding-left: 18px; position: relative; }
+  .exp-bullets li::before { content: '·'; position: absolute; left: 4px; color: var(--purple-mid); font-size: 18px; top: -1px; }
+
+  /* SKILLS */
+  .skills-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .skill-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem;
+  }
+  .skill-card-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .tag-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stag {
+    font-size: 12px; padding: 4px 10px; border-radius: 6px;
+    border: 1px solid; font-weight: 400;
+  }
+  .stag-purple { background: var(--purple-light); color: var(--purple); border-color: var(--purple-mid); }
+  .stag-teal   { background: var(--teal-bg); color: var(--teal); border-color: #7FCFC0; }
+  .stag-coral  { background: var(--coral-bg); color: var(--coral); border-color: #EFA989; }
+  .stag-gray   { background: #F3F3F5; color: var(--ink-2); border-color: var(--ink-4); }
+
+  /* PROJECTS */
+  .projects-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .proj-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+  }
+  .proj-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--purple-light); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .proj-icon svg { width: 18px; height: 18px; stroke: var(--purple); fill: none; stroke-width: 1.8; }
+  .proj-card h3 { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+  .proj-card p { font-size: 13px; color: var(--ink-3); line-height: 1.7; }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .edu-degree { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .edu-inst { font-size: 13px; color: var(--purple); margin-bottom: 6px; font-family: 'Times New Roman', Times, serif; font-size: 12px; }
+  .edu-detail { font-size: 13px; color: var(--ink-3); }
+  .edu-period { font-size: 12px; color: var(--ink-3); font-family: 'Times New Roman', Times, serif; white-space: nowrap; }
+
+  .cert-wrap { display: flex; flex-direction: column; gap: 10px; }
+  .cert-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+  }
+  .cert-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .cert-org { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .cert-date { font-size: 12px; color: var(--ink-3); font-family: 'Times New Roman', Times, serif; }
+
+  /* CONTACT */
+  .contact-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .contact-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;
+    text-decoration: none; transition: border-color 0.15s, transform 0.12s;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .contact-card:hover { border-color: var(--purple-mid); transform: translateY(-2px); }
+  .contact-icon { font-size: 20px; margin-bottom: 4px; }
+  .contact-lbl { font-size: 11px; color: var(--ink-3); font-family: 'Times New Roman', Times, serif; letter-spacing: 0.05em; }
+  .contact-val { font-size: 13px; color: var(--ink); font-weight: 400; word-break: break-all; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 1.5rem 2rem;
+    text-align: center; font-size: 12px; color: var(--ink-4);
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.25rem 2.5rem; }
+    .hero-avatar { display: none; }
+    .stat-bar { flex-wrap: wrap; }
+    .stat { min-width: 140px; }
+    .skills-wrap, .projects-wrap, .contact-wrap { grid-template-columns: 1fr; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+    .container { padding: 3rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span class="nav-dot"></span> Anushka Saini</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section>
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow">Data Analyst</div>
+      <h1>Anushka <em>Saini</em></h1>
+      <p class="hero-bio">Analytical and detail-oriented data analyst experienced in KPI analysis, performance optimization, and data-driven decision-making. Skilled in Excel, Python, and SQL with hands-on experience turning large datasets into actionable business insights.</p>
+      <div class="hero-chips">
+        <a class="chip" href="mailto:anushkasaini0908@gmail.com">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          anushkasaini0908@gmail.com
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/anushka-saini-8b693a252" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="chip" href="tel:+917300663182">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12 19.79 19.79 0 0 1 1 3.18 2 2 0 0 1 2.98 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 7300663182
+        </a>
+        <span class="chip">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          India
+        </span>
+      </div>
+    </div>
+    <div class="hero-avatar">AS</div>
+  </div>
+</section>
+
+<div class="stat-bar">
+  <div class="stat"><div class="stat-num">20K+</div><div class="stat-lbl">Records Processed</div></div>
+  <div class="stat"><div class="stat-num">85%</div><div class="stat-lbl">Forecast Accuracy</div></div>
+  <div class="stat"><div class="stat-num">25%</div><div class="stat-lbl">Utilization Gain</div></div>
+  <div class="stat"><div class="stat-num">30%</div><div class="stat-lbl">Wait Time Reduced</div></div>
+  <div class="stat"><div class="stat-num">7.94</div><div class="stat-lbl">CGPA</div></div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="container" id="experience">
+  <div class="section-header">
+    <span class="section-tag">Experience</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-card">
+    <div class="exp-card-head">
+      <div>
+        <div class="exp-role">Data Analyst Intern</div>
+        <div class="exp-company">DMRC — Delhi Metro Rail Corporation · Delhi</div>
+      </div>
+      <div class="exp-period">May 2024 – July 2024</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Analyzed commuter behavior and peak-hour demand patterns across 15+ metro-connected rental bike locations using Python and Excel.</li>
+      <li>Processed and evaluated 20,000+ ride records to identify operational inefficiencies and customer usage trends.</li>
+      <li>Built a demand forecasting model achieving 85% prediction accuracy to support resource allocation decisions.</li>
+      <li>Generated actionable insights projected to improve operational utilization by 25% and reduce commuter wait times by 30%.</li>
+      <li>Collaborated with stakeholders and transportation officials to support data-driven urban mobility planning.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="container" id="skills" style="padding-top: 0;">
+  <div class="section-header">
+    <span class="section-tag">Skills</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-wrap">
+    <div class="skill-card">
+      <div class="skill-card-label">Technical</div>
+      <div class="tag-wrap">
+        <span class="stag stag-purple">Excel</span>
+        <span class="stag stag-purple">SQL</span>
+        <span class="stag stag-purple">Python</span>
+        <span class="stag stag-purple">Pandas</span>
+        <span class="stag stag-purple">Matplotlib</span>
+        <span class="stag stag-purple">Data Visualization</span>
+        <span class="stag stag-purple">KPI Tracking</span>
+        <span class="stag stag-purple">Statistical Analysis</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-label">Tools & Frameworks</div>
+      <div class="tag-wrap">
+        <span class="stag stag-teal">Power BI</span>
+        <span class="stag stag-teal">Jupyter Notebook</span>
+        <span class="stag stag-teal">Google Colab</span>
+        <span class="stag stag-teal">Jira</span>
+        <span class="stag stag-teal">SDLC</span>
+        <span class="stag stag-teal">Agile</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-label">AI & Automation</div>
+      <div class="tag-wrap">
+        <span class="stag stag-coral">ChatGPT</span>
+        <span class="stag stag-coral">Gemini</span>
+        <span class="stag stag-coral">AI-assisted research</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-label">Soft Skills</div>
+      <div class="tag-wrap">
+        <span class="stag stag-gray">Communication</span>
+        <span class="stag stag-gray">People Management</span>
+        <span class="stag stag-gray">Critical Thinking</span>
+        <span class="stag stag-gray">Team Player</span>
+        <span class="stag stag-gray">Adaptability</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="container" id="projects" style="padding-top: 0;">
+  <div class="section-header">
+    <span class="section-tag">Projects</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-wrap">
+    <div class="proj-card">
+      <div class="proj-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm3-8a3 3 0 1 1-3-3 3 3 0 0 1 3 3z"/></svg>
+      </div>
+      <h3>DMRC Demand Forecasting</h3>
+      <p>Built a demand forecasting model on 20,000+ DMRC bike rental records achieving 85% prediction accuracy. Delivered insights improving operational utilization by 25% and reducing commuter wait times by 30%.</p>
+    </div>
+    <div class="proj-card">
+      <div class="proj-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>AI-Assisted Data Analysis Workflow</h3>
+      <p>Leveraged AI platforms including ChatGPT for exploratory data analysis strategies, Python debugging, and automation of analytical workflows. Improved efficiency and reduced manual preprocessing time across academic data projects.</p>
+    </div>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="container" id="education" style="padding-top: 0;">
+  <div class="section-header">
+    <span class="section-tag">Education</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-card">
+    <div>
+      <div class="edu-degree">Bachelor of Business Administration — Analytics & Big Data</div>
+      <div class="edu-inst">UPES, Dehradun</div>
+      <div class="edu-detail">CGPA: 7.94 · Data Structures · Python · Excel · Data Visualization · Soft Skills</div>
+    </div>
+    <div class="edu-period">Aug 2022 – May 2025</div>
+  </div>
+
+  <div class="section-header" style="margin-top: 2rem;">
+    <span class="section-tag">Certifications</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="cert-wrap">
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Machine Learning with Python</div>
+        <div class="cert-org">Coursera</div>
+      </div>
+      <div class="cert-date">Aug 2025</div>
+    </div>
+    <div class="cert-item">
+      <div>
+        <div class="cert-name">Introduction to Financial Management</div>
+        <div class="cert-org">Great Learning</div>
+      </div>
+      <div class="cert-date">May 2023</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="container" id="contact" style="padding-top: 0;">
+  <div class="section-header">
+    <span class="section-tag">Contact</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-wrap">
+    <a class="contact-card" href="mailto:anushkasaini0908@gmail.com">
+      <div class="contact-icon">✉</div>
+      <div class="contact-lbl">Email</div>
+      <div class="contact-val">anushkasaini0908@gmail.com</div>
+    </a>
+    <a class="contact-card" href="tel:+917300663182">
+      <div class="contact-icon">📞</div>
+      <div class="contact-lbl">Phone</div>
+      <div class="contact-val">+91 7300663182</div>
+    </a>
+    <a class="contact-card" href="https://www.linkedin.com/in/anushka-saini-8b693a252" target="_blank" rel="noopener">
+      <div class="contact-icon">💼</div>
+      <div class="contact-lbl">LinkedIn</div>
+      <div class="contact-val">anushka-saini-8b693a252</div>
+    </a>
+  </div>
+</div>
+
+<footer>© 2025 Anushka Saini · Data Analyst · Business & E-commerce Analytics</footer>
+
+</body>
+</html>
